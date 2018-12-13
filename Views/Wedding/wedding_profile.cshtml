@@ -1,0 +1,85 @@
+<style>
+    a{
+        font-size:20px;
+    }
+    .links{
+        font-size:20px;
+        margin-left:20%;
+    }
+.left{
+    margin-top:5%;
+    display:inline-block;
+    width:45%;
+    height:100%;
+}
+.right{
+    display:inline-block;
+    width:45%;
+    height:100%;
+    vertical-align:top;
+}
+.mapsize{
+    width:45%;
+    margin-top:5%;
+}
+.names{
+    font-weight:bold;
+    margin-left:-170px;
+    display:inline-block;
+    font-size:30px;
+}
+.guest{
+    margin-left:20px;
+}
+.inline{
+    display:inline-block;
+    font-size:18px;
+}
+.delete{
+    float:
+}
+</style>
+<header>
+<p class="names">@Model.name_1 & @Model.name_2's wedding</p>
+<a class="links" href="/all_weddings">All Weddings</a>
+<h5 class="inline">|</h5>
+<a href="/logout">Log Out</a>
+</header>
+<div class=left>
+    
+    <h5>Date: @Model.date.ToString("MMM dd yyyy")</h5>
+    <h5>Guests:</h5>
+    <div class="guests">
+        @{if(@Model!=null)
+        {
+            foreach(var g in @Model.RSVP)
+            { if(@Model.creatorId != g.User.UserId)
+            {
+                <br>
+                <li>@g.User.fname</li>
+                <br>
+            }
+            }
+        }
+        }
+        
+    
+    </div>
+    
+</div>
+<div class="right">
+    <div class="mapsize">
+        <iframe
+        width="600px"
+        height="400px"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/search?key=AIzaSyB9458WCJDqSCuz6GbbWXGFaG7aba4flQA&q=@Model.address" allowfullscreen>
+    </iframe>
+    </div>
+</div>
+<div class="delete">
+        @if(Model.creatorId==@ViewBag.id){
+            <a href="/delete/@Model.WeddingId">Delete</a>
+        
+        }
+</div>

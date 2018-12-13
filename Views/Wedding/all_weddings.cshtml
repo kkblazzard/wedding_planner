@@ -1,0 +1,67 @@
+@model RSVP
+<style>
+
+</style>
+<h2>Welcome to the Wedding Planner</h2>
+<a href="/logout">Log out</a>
+<div class="table">
+    <table class="table table-striped" class="table table-bordered" class="table table-striped">
+        <thead>
+            <tr>
+                <th  scope="col">Wedding</th>
+                <th scope="col">Date</th>
+                <th scope="col">Guest</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+        <tbody>
+            @{
+                foreach(var w in @ViewBag.allweddings)
+                { var t=false;
+                    <tr>
+                        <td><a href="wedding/@w.WeddingId">@w.name_1 & @w.name_2</a></td>
+                        <td>@w.date.ToString("MMM dd yyyy")</td>
+                        <td>@w.RSVP.Count</td>
+                        <td>
+                            @{    
+                                if(@w.creatorId == @ViewBag.Id)
+                                {
+                                    <a class="button" href="/delete/@w.WeddingId">Cancel Wedding</a>
+                                }
+                                else {
+                                    foreach(var e in w.RSVP)
+                                        {if(@e.UserId == @ViewBag.id){
+                                            t=true;
+                                        }}
+                                            if(t==true)
+                                            {
+                                                <form action="/unrsvp/@w.WeddingId"  method="post">
+                                                    <input type="hidden" asp-for="UserId" value="@ViewBag.id">
+                                                    <input type="hidden" asp-for="WeddingId" value="@w.WeddingId">
+                                                    <input type="submit" value="Remove RSVP">
+                                                </form>
+                                            }
+                                        
+                                    
+                                            if(t==false)
+                                            {
+                                                <form action="/rsvp/@w.WeddingId" method="post">
+                                                    <input type="hidden" name="UserId" value="@ViewBag.id">
+                                                    <input type="hidden" name="WeddingId" value="@w.WeddingId">
+                                                    <input type="submit" value="RSVP">
+                                                </form>
+                                            }
+                                        
+                                    }
+                                
+                            }
+
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    
+        <button><a href="wedding/add_wedding">Add a Wedding</a></button>
+</div>

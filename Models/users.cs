@@ -1,0 +1,43 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace wedding_planner.Models
+
+{
+    public class User
+    {
+        [Key]
+        public int UserId {get; set;}
+        [Display(Name="First Name:")] //display name for forms
+        [Required] // marks it as a required field
+        [MinLength  (3)]
+        public string fname {get; set;}
+        [Display(Name="Last Name:")] //display name for forms
+        [Required] // marks it as a required field
+        [MinLength (3)]
+        public string lname{get; set;}
+        [Display(Name="Email:")] //display name for forms
+        [Required] // marks it as a required field
+        [MinLength(7)]
+        [EmailAddress] //marks it as a email data type for varification
+        public string email {get; set;}
+        [Display(Name="Password:")] //display name for forms
+        [DataType(DataType.Password)] //marks it as a password data type for varification
+        [Required] // marks it as a required field
+        [MinLength (8, ErrorMessage ="Password must be 8 characters or longer!")]
+        public string  password {get; set;}
+        public DateTime created_at {get; set;}=DateTime.Now;
+        public DateTime updated_at {get; set;}=DateTime.Now;
+        public List<RSVP> RSVP {get; set;}
+
+        [NotMapped] //none mapped(not savedin database) entries needed for compaire validation to prevent user error
+        [Display(Name="Confirm Password")]
+        [Compare("password")]
+        [Required] // marks it as a required field
+        [DataType(DataType.Password)]
+        public string confirm_password {get; set;}
+    }
+}

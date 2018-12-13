@@ -1,0 +1,54 @@
+@model LoginUser
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<title>Login or Register</title>
+<style>
+.registration{
+    display:inline-block;
+    text-align:left;
+    height:400px;
+    width:400px;
+    margin-left:100px;
+}
+.login{
+    display:inline-block;
+    text-align: left;
+    height:400px;
+    width:400px;
+    vertical-align: top;
+    margin-top:61px;
+}
+.block{
+    display:block;
+}
+.inputbox{
+    width:250px;
+}
+</style>
+</head>
+<body>
+    <div class="login">
+        <h4>Login here!</h4>
+        <form asp-action="login" asp-controller="Users" method="post">
+            <br>
+            <label asp-for="Email"></label>
+            <br>
+            <input  class =inputbox type="text" asp-for="Email">
+            <br>
+            <br>
+            <label asp-for="Password"></label>
+            <br>
+            <input  class =inputbox type="password" asp-for="Password">
+            <br>
+            <br>
+            <input  type="submit" value="Login">
+            <br>
+            </form>
+        </div>   
+    </body>
+</html>

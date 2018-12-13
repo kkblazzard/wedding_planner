@@ -1,0 +1,49 @@
+@model Wedding
+<style>
+.inline{
+    display:inline-block;
+}
+.date{
+    height: 38px;
+    padding: 6px 10px;
+    background-color: #fff;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+}
+</style>
+<h2>Plan Your Wedding</h2>
+<a href="/all_weddings">All Weddings</a>
+<h6 class="inline">|</h6>
+<a href="/logout">Log Out</a>
+<div class="form">
+    <form asp-action="Add" asp=Controller="Wedding" method="post">
+        <label asp-for="name_1"></label>
+        <input asp-for="name_1">
+        <br>
+        <span asp-Validation-for="name_1"></span>
+        <br>
+        <label asp-for="name_2"></label>
+        <input asp-for="name_2">
+        <br>
+        <span asp-Validation-for="name_2"></span>
+        <br>
+        <label asp-for="date"></label>
+        <input class="date" asp-for="date">
+        <br>
+        <span asp-Validation-for="date"></span>
+        <br>
+        <label asp-for="address"></label>
+        <input asp-for="address">
+        <br>
+        <span asp-Validation-for="address"></span>
+        <input type=hidden name="creatorId" value="@ViewBag.id"
+        <br>
+        <input type="submit" value="Add Wedding">
+
+    </form>
+
+
+</div>
